@@ -1,4 +1,5 @@
 const net = require('net');
+const setupInput = require('./input');
 
 // establishes a connection with the game server
 const connect = function () {
