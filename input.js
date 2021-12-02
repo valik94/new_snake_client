@@ -1,3 +1,4 @@
+//const {MOVE_UP_KEY, MOVE_DOWN_KEY, MOVE_RIGHT_KEY, MOVE_LEFT_KEY} = require('./constants');
 let connection;
 
 //eventhandler manages the event that happens in this case its key binding 'w''a's''d' and ASCII for Ctrl+C
@@ -22,7 +23,7 @@ const handleUserInput =  (data) => {
     connection.write('Move: right');
     console.log("right was pressed: ", data)
   }
-  
+
   let sayingsArr = ['catch me', 'too slow', 'snakes who?'];
   for (let saying of sayingsArr){
     if (data === 'r') {
@@ -30,6 +31,12 @@ const handleUserInput =  (data) => {
       saying++;
       }
     }
+
+// for (let data of sayingObj){
+//     if (data === 'r' || 't'|| 'y') {
+//       connection.write(`Say: ${sayingObj.data}\n`);
+//         }
+//     }
 };
 
 const setupInput = function (conn) {
