@@ -3,6 +3,7 @@ let connection;
 //eventhandler manages the event that happens in this case its key binding 'w''a's''d' and ASCII for Ctrl+C
 const handleUserInput =  (data) => { 
     if (data === '\u0003'){  //'\u0003' = CTRL+C
+    console.log("Exiting game...");
     process.exit();
   }
   if (data === 'w') { 
@@ -21,6 +22,14 @@ const handleUserInput =  (data) => {
     connection.write('Move: right');
     console.log("right was pressed: ", data)
   }
+  
+  let sayingsArr = ['catch me', 'too slow', 'snakes who?'];
+  for (let saying of sayingsArr){
+    if (data === 'r') {
+      connection.write(`Say: ${saying}\n`);
+      saying++;
+      }
+    }
 };
 
 const setupInput = function (conn) {
