@@ -1,5 +1,5 @@
-//const {MOVE_UP_KEY, MOVE_DOWN_KEY, MOVE_RIGHT_KEY, MOVE_LEFT_KEY} = require('./constants');
 let connection;
+const {sayingObj, moveObj} = require('./constants')
 
 //eventhandler manages the event that happens in this case its key binding 'w''a's''d' and ASCII for Ctrl+C
 const handleUserInput =  (data) => { 
@@ -7,36 +7,19 @@ const handleUserInput =  (data) => {
     console.log("Exiting game...");
     process.exit();
   }
-  if (data === 'w') { 
-    connection.write('Move: up');
-    console.log("up was pressed: ", data) 
-  }
-  if (data === 'a') {
-    connection.write('Move: left');
-    console.log("left was pressed: ", data)
-  }
-  if (data === 's') {
-    connection.write('Move: down');
-    console.log("down was pressed: ", data)
-  }
-  if (data === 'd') {
-    connection.write('Move: right');
-    console.log("right was pressed: ", data)
-  }
 
-  let sayingsArr = ['catch me', 'too slow', 'snakes who?'];
-  for (let saying of sayingsArr){
-    if (data === 'r') {
-      connection.write(`Say: ${saying}\n`);
-      saying++;
-      }
+  let keysArr = Object.keys(moveObj); //DRY
+    if (keysArr.includes(data)){
+      connection.write(`Move: ${moveObj[data]}\n`);
+      console.log(`${moveObj[data]} was pressed.`);
     }
 
-// for (let data of sayingObj){
-//     if (data === 'r' || 't'|| 'y') {
-//       connection.write(`Say: ${sayingObj.data}\n`);
-//         }
-//     }
+  let sayingArr = Object.keys(sayingObj);
+      if (sayingArr.includes(data)) {
+        connection.write(`Say: ${sayingObj[data]}\n`);
+      }
+
+    
 };
 
 const setupInput = function (conn) {
